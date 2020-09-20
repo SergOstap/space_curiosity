@@ -10,6 +10,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=NearEarthObjectRepository::class)
+ * @ORM\Table(indexes={
+ *     @ORM\Index(name="neo_speed_idx", columns={"speed"})
+ * })
  * @UniqueEntity("reference")
  */
 class NearEarthObject
