@@ -44,4 +44,14 @@ class NearEarthObjectsController extends BaseController
 
         return $this->serializedResponse($this->nearEarthObjectRepository->getOneFastest($isHazardous));
     }
+
+    /**
+     * @Route("/neo/best-month", name="app_near_earth_objects_best_month")
+     */
+    public function bestMonth(Request $request): Response
+    {
+        $isHazardous = $request->query->getBoolean('hazardous', false);
+
+        return $this->serializedResponse($this->nearEarthObjectRepository->getBestMonth($isHazardous));
+    }
 }

@@ -11,7 +11,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=NearEarthObjectRepository::class)
  * @ORM\Table(indexes={
- *     @ORM\Index(name="neo_speed_idx", columns={"speed"})
+ *     @ORM\Index(name="neo_speed_idx", columns={"speed"}),
+ *     @ORM\Index(name="neo_approach_date_idx", columns={"approach_date"})
  * })
  * @UniqueEntity("reference")
  */

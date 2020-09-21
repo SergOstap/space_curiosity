@@ -6,6 +6,8 @@ namespace App\Repository;
 
 use App\Entity\NearEarthObject;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\AbstractQuery;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,15 +41,32 @@ class NearEarthObjectRepository extends ServiceEntityRepository
 
     public function getOneFastest(?bool $isHazardous): ?NearEarthObject
     {
-        $query = $this->createQueryBuilder('o')
+        return $this->setHazardous($this->createQueryBuilder('o'), $isHazardous)
             ->orderBy('o.speed', 'DESC')
-            ->setMaxResults(1);
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function getBestMonth(?bool $isHazardous): ?array
+    {
+        return $this->setHazardous($this->createQueryBuilder('o'), $isHazardous)
+            ->select('count(o.id) as count', 'substring(o.approachDate, 1, 7) as month')
+            ->groupBy('month')
+            ->orderBy('count', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult(AbstractQuery::HYDRATE_ARRAY);
+    }
+
+    private function setHazardous(QueryBuilder $query, ?bool $isHazardous): QueryBuilder
+    {
         if ($isHazardous !== null) {
             $query
                 ->andWhere('o.isHazardous = :isHazardous')
                 ->setParameter('isHazardous', $isHazardous);
         }
 
-        return $query->getQuery()->getOneOrNullResult();
+        return $query;
     }
 }
