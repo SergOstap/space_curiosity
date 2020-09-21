@@ -30,6 +30,10 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    _instanceof:
+        App\Controller\BaseControllerInterface:
+            tags: ['app.base_controller_interface']
+
     App\Service\Nasa\NasaGateway:
         arguments:
             $nasaApiKey: '%env(NASA_API_KEY)%'
