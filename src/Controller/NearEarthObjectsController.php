@@ -18,7 +18,7 @@ class NearEarthObjectsController extends BaseController
     }
 
     /**
-     * @Route("/neo/hazardous", name="app_near_earth_objects_hazardous")
+     * @Route("/neo/hazardous", name="app_near_earth_objects_hazardous", methods={"GET"})
      */
     public function hazardous(Request $request): Response
     {
@@ -36,7 +36,7 @@ class NearEarthObjectsController extends BaseController
     }
 
     /**
-     * @Route("/neo/fastest", name="app_near_earth_objects_fastest")
+     * @Route("/neo/fastest", name="app_near_earth_objects_fastest", methods={"GET"})
      */
     public function fastest(Request $request): Response
     {
@@ -46,7 +46,7 @@ class NearEarthObjectsController extends BaseController
     }
 
     /**
-     * @Route("/neo/best-month", name="app_near_earth_objects_best_month")
+     * @Route("/neo/best-month", name="app_near_earth_objects_best_month", methods={"GET"})
      */
     public function bestMonth(Request $request): Response
     {
