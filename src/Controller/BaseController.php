@@ -22,7 +22,7 @@ abstract class BaseController extends AbstractController implements BaseControll
      * @param int|null $status
      * @return Response
      */
-    protected function serializedResponse($response, ?int $status = 200): Response
+    public function serializedResponse($response, ?int $status = 200): Response
     {
         return new Response(
             $this->serializer->serialize($response, 'json'),
