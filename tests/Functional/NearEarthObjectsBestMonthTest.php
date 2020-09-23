@@ -27,7 +27,7 @@ class NearEarthObjectsBestMonthTest extends FunctionalTestCase
 
     /**
      * @dataProvider dataProvider
-     * @covers \App\Controller\NearEarthObjectsController::fastest()
+     * @covers \App\Controller\NearEarthObjectsController::bestMonth()
      */
     public function testNearEarthObjectsBestMonth(?bool $isHazardous, string $count, string $bestMonth)
     {
